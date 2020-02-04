@@ -1,0 +1,96 @@
+@import "bootstrap-grid.css"
+@import "bootstrap.css"
+
+ul
+    margin: 0
+
+h1
+    font-weight: 300
+    text-align: center
+.app
+    min-height: 100vh
+.wrapper
+    min-height: 100vh
+    padding-bottom: 100px
+    box-sizing: border-box
+
+.btn-black
+    background-color: #343a40
+    font-size: 20px
+    font-weight: bold
+    color: white
+    &:hover
+        background-color: #d4d4d4
+
+.header
+    background-color: #343a40
+    &__container
+        padding: 0
+    &__heading
+        color: #dae0e5
+    &__navs
+        list-style-type: none
+        padding: 0
+        display: flex
+        align-items: center
+        height: 100%
+        & li
+            height: 100%
+            margin-left: 15px
+            &:first-of-type
+                margin: 0
+    &__nav-link
+        text-transform: uppercase
+        text-decoration: none
+
+.welcome
+    background-color: #d4d4d4
+    &__container
+        padding-top: 20px
+        padding-bottom: 20px
+    &__h1
+        margin-bottom: 0
+    &__p
+        font-size: 20px
+        line-height: 20px
+        text-align: center
+        text-transform: uppercase
+        letter-spacing: 3px
+.last-news
+    &__heading
+        text-transform: uppercase
+        margin: 20px 0
+    & .all-news__btn
+        margin: 30px 0
+.news-block
+    height: 300px
+    margin: 15px 0
+    &__body
+        display: block
+        background-color: #e4e4e4
+        height: 100%
+        width: 100%
+        transition: box-shadow .2s
+        &:hover
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.5)
+    &__img-container
+        overflow: hidden
+        width: 100%
+        max-height: 200px
+    &__img
+        width: 100%
+    &__heading
+        padding: 15px
+    &__btn
+        font-size: 14px
+        font-weight: 400
+
+
+.footer
+    background-color: #343a40
+    &__container
+        height: 100px
+        margin-top: -100px
+
+
+
