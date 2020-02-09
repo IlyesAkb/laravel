@@ -7,6 +7,9 @@ h1 {
   font-weight: 300;
   text-align: center; }
 
+h2 {
+  font-weight: 300; }
+
 .app {
   min-height: 100vh; }
 
@@ -86,6 +89,35 @@ h1 {
   .news-block__btn {
     font-size: 14px;
     font-weight: 400; }
+
+.login {
+  padding: 50px; }
+  .login__container {
+    height: 100%; }
+  .login__form {
+    min-width: 300px; }
+    .login__form label {
+      display: block;
+      width: 100%; }
+    .login__form-field {
+      width: 100%;
+      padding: 0 15px;
+      line-height: 30px;
+      box-sizing: border-box; }
+  .login__btn {
+    width: 100%; }
+
+.category__link {
+  display: block;
+  text-align: center;
+  padding: 15px 0; }
+
+.news-body {
+  padding: 20px 0; }
+  .news-body__text {
+    text-align: center; }
+  .news-body__img {
+    max-width: 400px; }
 
 .footer {
   background-color: #343a40; }

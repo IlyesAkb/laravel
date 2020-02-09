@@ -12,25 +12,20 @@
 */
 
 
-Route::get('/', function () {
-    $news = [
-        'heading' => 'Срочная новось',
-        'newsImg' => 'https://s13.stc.all.kpcdn.net/share/i/12/10766350/inx960x640.jpg'
-    ];
-    return view('welcome', ['news' => $news, 'page' => 'main'] );
-});
+Route::get('/', ['uses' => 'HomeController@index']);
+Route::get('/info', ['uses' => 'HomeController@info']);
 
-Route::get('news', function () {
-    $news = [
-        'heading' => 'Срочная новось',
-        'newsImg' => 'https://s13.stc.all.kpcdn.net/share/i/12/10766350/inx960x640.jpg'
-    ];
-   return view('news', ['news' => $news, 'page' => 'news']);
-});
+Route::get('/news', ['uses' => 'NewsController@index']);
+Route::get('/news/{id}', ['uses' => 'NewsController@getOne']);
 
-Route::get('info', function() {
-    return view('info', ['page' => 'info']);
-});
+Route::get('/categories', ['uses' => 'NewsController@categories']);
+Route::get('/categories/{id}', ['uses' => 'NewsController@getCategory']);
+
+Route::get('/login', ['uses' =>'UserController@index']);
+
+
+
+
 
 
 

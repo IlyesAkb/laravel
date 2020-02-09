@@ -11,34 +11,18 @@
         <div class="container last-news__container">
             <h1 class="last-news__heading">Последние новости</h1>
             <div class="news-container row">
-                @for($i = 0; $i < 4; $i++)
+                @foreach($news as $key => $body)
                     <div class="news-block col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                        <a href="#" class="news-block__body">
+                        <a href="/news/{{ $key }}" class="news-block__body">
                             <div class="news-block__img-container">
-                                <img src="{{ $news['newsImg'] }}" alt="news__img" class="news-block__img">
+                                <img src="{{ $body['newsImg'] }}" alt="news__img" class="news-block__img">
                             </div>
                             <div class="news-block__heading">
-                                <p>{{ $news['heading'] }}</p>
-{{--                                <a href="#" class="btn btn-black news-block__btn">Читать</a>--}}
+                                <p>{{ $body['heading'] }}</p>
                             </div>
                         </a>
                     </div>
-                @endfor
-
-
-
-{{--                <div class="news-block col-sm-12 col-md-6 col-lg-4 col-xl-3">--}}
-{{--                    <div></div>--}}
-{{--                </div>--}}
-{{--                <div class="news-block col-sm-12 col-md-6 col-lg-4 col-xl-3">--}}
-{{--                    <div></div>--}}
-{{--                </div>--}}
-{{--                <div class="news-block col-sm-12 col-md-6 col-lg-4 col-xl-3">--}}
-{{--                    <div></div>--}}
-{{--                </div>--}}
-{{--                <div class="news-block col-sm-12 col-md-6 col-lg-4 col-xl-3">--}}
-{{--                    <div></div>--}}
-{{--                </div>--}}
+                @endforeach
             </div>
             <a href="/news" class="btn btn-black all-news__btn">Все новости</a>
         </div>
