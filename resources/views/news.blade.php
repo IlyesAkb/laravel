@@ -2,20 +2,24 @@
 @section('content')
     <section class="news">
         <div class="container news__container">
-            <h1>Новости</h1>
+            @if(isset($category))
+                <h1>{{ $category }}</h1>
+            @else
+                <h1>Новости</h1>
+            @endif
             <div class="row">
-                @for($i = 0; $i < 12; $i++)
+                @foreach($news as $key => $body)
                     <div class="news-block col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                        <a href="#" class="news-block__body">
+                        <a href="/news/{{ $key }}" class="news-block__body">
                             <div class="news-block__img-container">
-                                <img src="{{ $news['newsImg'] }}" alt="news__img" class="news-block__img">
+                                <img src="{{ $body['newsImg'] }}" alt="news__img" class="news-block__img">
                             </div>
                             <div class="news-block__heading">
-                                <p>{{ $news['heading'] }}</p>
+                                <p>{{ $body['heading'] }}</p>
                             </div>
                         </a>
                     </div>
-                @endfor
+                @endforeach
             </div>
         </div>
     </section>
