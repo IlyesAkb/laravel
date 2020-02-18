@@ -1,4 +1,8 @@
-@extends('layouts.main')
+@extends('layouts.bootstrapLayout')
+
+@section('menu')
+    @include('menu.main')
+@endsection
 
 @section('content')
     <section class="news-body">

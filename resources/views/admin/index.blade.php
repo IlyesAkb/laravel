@@ -1,11 +1,11 @@
 @extends('layouts.bootstrapLayout')
 
 @section('menu')
-    @include('menu.main')
+    @include('menu.admin')
 @endsection
 
 @section('content')
     <div class="container">
-        <h1>О проекте</h1>
+        <h1>Админка</h1>
     </div>
-    @endsection
+@endsection

@@ -91,21 +91,8 @@ h2 {
     font-weight: 400; }
 
 .login {
-  padding: 50px; }
-  .login__container {
-    height: 100%; }
-  .login__form {
-    min-width: 300px; }
-    .login__form label {
-      display: block;
-      width: 100%; }
-    .login__form-field {
-      width: 100%;
-      padding: 0 15px;
-      line-height: 30px;
-      box-sizing: border-box; }
-  .login__btn {
-    width: 100%; }
+  padding: 50px 0;
+  box-sizing: border-box; }
 
 .category__link {
   display: block;
@@ -119,10 +106,22 @@ h2 {
   .news-body__img {
     max-width: 400px; }
 
+.user-registration {
+  padding: 50px 0;
+  box-sizing: border-box; }
+
+.add-news {
+  padding: 50px 0;
+  box-sizing: border-box; }
+
+.registration-link {
+  display: block;
+  padding: 15px 0; }
+
 .footer {
-  background-color: #343a40; }
+  background-color: #343a40;
+  margin-top: -100px; }
   .footer__container {
-    height: 100px;
-    margin-top: -100px; }
+    height: 100px; }
 
 /*# sourceMappingURL=style.css.map */

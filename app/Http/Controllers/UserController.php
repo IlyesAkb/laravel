@@ -9,4 +9,8 @@ class UserController extends Controller
     public function index() {
         return view('login', ['page' => 'login']);
     }
+
+    public function registration() {
+        return view('registration', ['page' => 'login']);
+    }
 }

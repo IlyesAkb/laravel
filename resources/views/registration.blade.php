@@ -5,14 +5,30 @@
 @endsection
 
 @section('content')
-    <section class="login">
-        <div class="container login__container">
+    <section class="user-registration">
+        <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">Войти</div>
+                        <div class="card-header">Register</div>
                         <div class="card-body">
                             <form name="my-form">
+                                <div class="form-group row">
+                                    <label for="firs_name" class="col-md-4 col-form-label text-md-right">Fits
+                                        Name</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="firs_name" class="form-control" name="firs-name">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="last_name" class="col-md-4 col-form-label text-md-right">Last
+                                        Name</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="last_name" class="form-control" name="last-name">
+                                    </div>
+                                </div>
+
+
                                 <div class="form-group row">
                                     <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
                                         Address</label>
@@ -28,23 +44,14 @@
                                 </div>
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Войти
+                                        Register
                                     </button>
-                                </div>
-                                <div class="col-md-6 offset-md-4">
-                                    <a href="{{ route('user.registration') }}" class="registration-link">Еще не зарегестрированы?</a>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
-        {{--        </div>--}}
     </section>
-@endsection
-@section('scripts')
-    <script src="{{ asset('/js/login.js') }}"></script>
 @endsection
