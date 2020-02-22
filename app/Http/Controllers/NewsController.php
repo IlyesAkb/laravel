@@ -2,71 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\News;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    private $news = [
-        [
-            'heading' => 'Срочная новось 1',
-            'newsImg' => 'https://s13.stc.all.kpcdn.net/share/i/12/10766350/inx960x640.jpg',
-            'description' => 'Подробное описание новости.'
-        ],
-        [
-            'heading' => 'Срочная новось 2',
-            'newsImg' => 'https://s13.stc.all.kpcdn.net/share/i/12/10766350/inx960x640.jpg',
-            'description' => 'Подробное описание новости.'
-        ],
-        [
-            'heading' => 'Срочная новось 3',
-            'newsImg' => 'https://s13.stc.all.kpcdn.net/share/i/12/10766350/inx960x640.jpg',
-            'description' => 'Подробное описание новости.'
-        ],
-        [
-            'heading' => 'Срочная новось 4',
-            'newsImg' => 'https://s13.stc.all.kpcdn.net/share/i/12/10766350/inx960x640.jpg',
-            'description' => 'Подробное описание новости.'
-        ]
-    ];
-    private $categoriesArr = [
-        'Хорошие новорсти',
-        'Плохие новости',
-        'Спорт',
-        'Политика',
-        'Мдецина(коронавирус)'
-    ];
+    private $news;
+    private $categories;
+
+
+    public function __construct()
+    {
+        $this->news = News::$all;
+        $this->categories = Category::$all;
+    }
 
     public function index() {
-        return view('news', ['news' => $this->news, 'page' => 'news']);
+        return view('news.all', ['news' => $this->news, 'page' => 'news']);
+    }
+
+    public function getOne($id) {
+        foreach ($this->news as $item) {
+            if ($item['id'] == $id) {
+                return view('news.one', ['news' => $item, 'page' => 'news']);
+            }
+        }
+        return redirect('/news');
     }
 
     public function categories(){
         return view('categories',
-            ['categories' => $this->categoriesArr, 'page' => 'categories']
+            ['categories' => $this->categories, 'page' => 'categories']
         );
     }
 
     public function getCategory($id = null) {
-        if (isset($this->categoriesArr[$id])) {
-            return view('news',
-                [
-                    'category' => $this->categoriesArr[$id],
-                    'news' => $this->news,
-                    'page' => 'categories'
-                ]
-            );
+        foreach ($this->categories as $category) {
+            if ($category['id'] == $id) {
+                return view('news.all',
+                    [
+                        'category' => $category['name'],
+                        'news' => $this->news,
+                        'page' => 'categories'
+                    ]
+                );
+            }
         }
-
         return redirect('/categories');
     }
-
-    public function getOne($id) {
-        if (isset($this->news[$id])) {
-            return view('newsOne', ['news' => $this->news[$id], 'page' => 'news']);
-        }
-
-        return redirect('/news');
-    }
-
-
 }

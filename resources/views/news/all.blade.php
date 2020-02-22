@@ -5,15 +5,13 @@
 @endsection
 
 @section('content')
-    <section class="welcome">
-        <div class="container welcome__container">
-            <h1 class="welcome__h1">ДОБРО ПОЖАЛОВАТЬ НА САЙТ С НОВОСТЯМИ</h1>
-            <p class="welcome__p">Сдесь вы можете ознакомиться с последними событиями</p>
-        </div>
-    </section>
-    <section class="last-news">
-        <div class="container last-news__container">
-            <h1 class="last-news__heading">Последние новости</h1>
+    <section class="news">
+        <div class="container news__container">
+            @if(isset($category))
+                <h1>{{ $category }}</h1>
+            @else
+                <h1>Новости</h1>
+            @endif
             <div class="row">
                 @forelse($news as $body)
                     <div class="col-md-4">
@@ -40,7 +38,6 @@
                     <h1>Нет новостей</h1>
                 @endforelse
             </div>
-            <a href="{{ route('news.all') }}" class="btn btn-black all-news__btn">Все новости</a>
         </div>
     </section>
 @endsection

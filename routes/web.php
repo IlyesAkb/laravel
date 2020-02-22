@@ -11,17 +11,62 @@
 |
 */
 
+Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home']);
+Route::get('/info', ['uses' => 'HomeController@info', 'as' => 'info']);
 
-Route::get('/', ['uses' => 'HomeController@index']);
-Route::get('/info', ['uses' => 'HomeController@info']);
 
-Route::get('/news', ['uses' => 'NewsController@index']);
-Route::get('/news/{id}', ['uses' => 'NewsController@getOne']);
+Route::group(
+    [
+        'prefix' => 'user',
+        'namespase' => 'User',
+        'as' => 'user.'
+    ],
+    function() {
+        Route::get('/login', ['uses' => 'UserController@index', 'as' => 'login']);
+        Route::get('/registration', ['uses' => 'UserController@registration', 'as' => 'registration']);
+    });
 
-Route::get('/categories', ['uses' => 'NewsController@categories']);
-Route::get('/categories/{id}', ['uses' => 'NewsController@getCategory']);
+Route::group(
+    [
+        'prefix' => 'news',
+        'namespase' => 'News',
+        'as' => 'news.'
+    ],
+    function() {
+        Route::get('/all', ['uses' => 'NewsController@index', 'as' => 'all']);
+        Route::get('/one/{id}', ['uses' => 'NewsController@getOne', 'as' => 'one']);
+    }
+);
 
-Route::get('/login', ['uses' =>'UserController@index']);
+Route::group(
+    [
+        'prefix' => 'categories',
+        'namespase' => 'Categories',
+        'as' => 'categories.'
+    ],
+    function() {
+        Route::get('/all', ['uses' => 'NewsController@categories', 'as' => 'all']);
+        Route::get(
+            '/one/{id}',
+            ['uses' => 'NewsController@getCategory', 'as' => 'category']
+        );
+    }
+);
+
+Route::group(
+  [
+      'prefix' => 'admin',
+      'namespase' => 'Admin',
+      'as' => 'admin.'
+  ],
+  function() {
+      Route::get('/', ['uses' => 'AdminController@index', 'as' => 'index']);
+      Route::get('/addNews', ['uses' => 'AdminController@addNews', 'as' => 'addNews']);
+  }
+);
+
+
+
 
 
 
