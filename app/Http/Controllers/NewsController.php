@@ -14,18 +14,19 @@ class NewsController extends Controller
 
     public function __construct()
     {
-        $this->news = News::$all;
-        $this->categories = Category::$all;
+        $this->news = News::getAll();
+        $this->categories = Category::getAll();
     }
 
     public function index() {
-        return view('news.all', ['news' => $this->news, 'page' => 'news']);
+
+        return view('news.all', ['news' => $this->news]);
     }
 
     public function getOne($id) {
         foreach ($this->news as $item) {
             if ($item['id'] == $id) {
-                return view('news.one', ['news' => $item, 'page' => 'news']);
+                return view('news.one', ['news' => $item]);
             }
         }
         return redirect('/news');
@@ -33,17 +34,25 @@ class NewsController extends Controller
 
     public function categories(){
         return view('categories',
-            ['categories' => $this->categories, 'page' => 'categories']
+            ['categories' => $this->categories]
         );
     }
 
     public function getCategory($id = null) {
         foreach ($this->categories as $category) {
             if ($category['id'] == $id) {
+
+                $newsArr = [];
+                foreach($this->news as $news) {
+                    if($news['category'] == $id) {
+                        array_push($newsArr, $news);
+                    }
+                }
+
                 return view('news.all',
                     [
                         'category' => $category['name'],
-                        'news' => $this->news,
+                        'news' => $newsArr,
                         'page' => 'categories'
                     ]
                 );

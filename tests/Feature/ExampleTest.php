@@ -14,8 +14,22 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get('/');
+        $response = $this->get(route('home'));
 
         $response->assertStatus(200);
+        $response->assertViewHas('news');
+
+    }
+
+    public function testNotFound()
+    {
+        $response = $this->get('/supeduper');
+        $response->assertNotFound();
+    }
+
+    public function testCategories()
+    {
+        $response = $this->get(route('categories.all'));
+        $response->assertViewHas('categories');
     }
 }

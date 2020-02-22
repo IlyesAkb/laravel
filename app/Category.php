@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Storage;
 
 class Category extends Model
 {
@@ -28,4 +29,9 @@ class Category extends Model
             'name' => 'Мдецина(коронавирус)
             ']
     ];
+
+    public static function getAll() {
+        $file = Storage::disk('public')->get('DB/categories.json');
+        return json_decode($file, true);
+    }
 }
