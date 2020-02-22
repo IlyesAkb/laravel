@@ -11,13 +11,6 @@ use Storage;
 
 class AdminController extends Controller
 {
-    private $news;
-
-    public function __construct()
-    {
-        $this->news = News::getAll();
-    }
-
     public function index() {
         return view('admin.index', ['page' => 'main']);
     }
