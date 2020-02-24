@@ -11,14 +11,14 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->news = News::$all;
+        $this->news = News::getAll();
     }
 
     public function index() {
-        return view('welcome', ['news' => $this->news, 'page' => 'main']);
+        return view('welcome', ['news' => $this->news]);
     }
 
     public function info() {
-        return view('info', ['page' => 'info']);
+        return view('info');
     }
 }

@@ -60,8 +60,9 @@ Route::group(
       'as' => 'admin.'
   ],
   function() {
-      Route::get('/', ['uses' => 'AdminController@index', 'as' => 'index']);
-      Route::get('/addNews', ['uses' => 'AdminController@addNews', 'as' => 'addNews']);
+      Route::get('/', ['uses' => 'Admin\AdminController@index', 'as' => 'index']);
+      Route::get('/addNews', ['uses' => 'Admin\AdminController@addNews', 'as' => 'addNews']);
+      Route::post('/saveNews', ['uses' => 'Admin\AdminController@saveNews', 'as' => 'saveNews']);
   }
 );
 

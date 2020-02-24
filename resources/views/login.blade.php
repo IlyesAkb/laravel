@@ -26,6 +26,17 @@
                                         <input type="password" id="password" class="form-control" name="password">
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6 offset-md-4 align-items-center">
+                                        <label for="remember" class="form-check-label">
+
+                                            <input type="checkbox" name="remember" id="remember" class="form-check-inline">
+                                            <span>Запоинить меня</span>
+
+                                        </label>
+                                    </div>
+
+                                </div>
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         Войти
