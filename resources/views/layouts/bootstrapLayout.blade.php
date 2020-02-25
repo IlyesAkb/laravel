@@ -17,22 +17,31 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="{{ route('home') }}">News</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+                        aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 @yield('menu')
             </nav>
-{{--            <nav class="navbar navbar-dark bg-dark">--}}
+            {{--            <nav class="navbar navbar-dark bg-dark">--}}
 
-{{--                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"--}}
-{{--                        data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false"--}}
-{{--                        aria-label="Toggle navigation">--}}
-{{--                    <span class="navbar-toggler-icon"></span>--}}
-{{--                </button>--}}
-{{--                @yield('menu')--}}
-{{--            </nav>--}}
+            {{--                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"--}}
+            {{--                        data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false"--}}
+            {{--                        aria-label="Toggle navigation">--}}
+            {{--                    <span class="navbar-toggler-icon"></span>--}}
+            {{--                </button>--}}
+            {{--                @yield('menu')--}}
+            {{--            </nav>--}}
         </header>
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
         @yield('content')
     </div>
 </div>
