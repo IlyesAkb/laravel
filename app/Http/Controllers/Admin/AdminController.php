@@ -15,9 +15,10 @@ class AdminController extends Controller
         return view('admin.index', ['page' => 'main']);
     }
 
-    public function addNews() {
+    public function addNews(News $news) {
+        //dd($news);
         return view('admin.addNews',
-            ['page' => 'addNews', 'categories' => Category::getAll()]
+            ['categories' => Category::all(), 'news' => $news]
         );
     }
 
@@ -26,8 +27,7 @@ class AdminController extends Controller
 
         if ($request->file('image')) {
             $path = Storage::putFile('public', $request->file('image'));
-            $url = Storage::url($path);
-            $news['image'] = $url;
+            $news['image'] = Storage::url($path);
         }
         if (!News::insert($news)) {
             $request->flash();

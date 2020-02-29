@@ -34,7 +34,7 @@ Route::group(
     ],
     function() {
         Route::get('/all', ['uses' => 'NewsController@index', 'as' => 'all']);
-        Route::get('/one/{id}', ['uses' => 'NewsController@getOne', 'as' => 'one']);
+        Route::get('/one/{news}', ['uses' => 'NewsController@getOne', 'as' => 'one']);
     }
 );
 
@@ -47,7 +47,7 @@ Route::group(
     function() {
         Route::get('/all', ['uses' => 'NewsController@categories', 'as' => 'all']);
         Route::get(
-            '/one/{id}',
+            '/one/{category}',
             ['uses' => 'NewsController@getCategory', 'as' => 'category']
         );
     }
@@ -61,8 +61,12 @@ Route::group(
   ],
   function() {
       Route::get('/', ['uses' => 'Admin\AdminController@index', 'as' => 'index']);
-      Route::get('/addNews', ['uses' => 'Admin\AdminController@addNews', 'as' => 'addNews']);
-      Route::post('/saveNews', ['uses' => 'Admin\AdminController@saveNews', 'as' => 'saveNews']);
+      Route::get('/addNews/{news?}', ['uses' => 'Admin\AdminController@addNews', 'as' => 'addNews']);
+      Route::get('/newsAll', ['uses' => 'Admin\NewsController@newsAll', 'as' => 'allNews']);
+      Route::post('/saveNews', ['uses' => 'Admin\NewsController@saveNews', 'as' => 'saveNews']);
+      Route::post('/updateNews/{news}', ['uses' => 'Admin\NewsController@updateNews', 'as' => 'updateNews']);
+      Route::get('/deleteNews/{news}', ['uses'=> 'Admin\NewsController@deleteNews', 'as' => 'deleteNews']);
+      Route::resource('news', 'Admin\AdminNewsController');
   }
 );
 

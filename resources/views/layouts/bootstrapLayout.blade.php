@@ -24,15 +24,6 @@
 
                 @yield('menu')
             </nav>
-            {{--            <nav class="navbar navbar-dark bg-dark">--}}
-
-            {{--                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"--}}
-            {{--                        data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false"--}}
-            {{--                        aria-label="Toggle navigation">--}}
-            {{--                    <span class="navbar-toggler-icon"></span>--}}
-            {{--                </button>--}}
-            {{--                @yield('menu')--}}
-            {{--            </nav>--}}
         </header>
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
