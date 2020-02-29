@@ -10,7 +10,7 @@
             <h1>Категории</h1>
             <div>
                 @foreach($categories as $category)
-                    <a href="{{ route('categories.category', $category['id']) }}" class="link category__link">{{ $category['name'] }}</a>
+                    <a href="{{ route('categories.category', $category->id) }}" class="link category__link">{{ $category->name }}</a>
                 @endforeach
             </div>
         </div>

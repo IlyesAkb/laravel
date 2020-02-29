@@ -8,56 +8,39 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    private $news;
-    private $categories;
-
-
-    public function __construct()
-    {
-        $this->news = News::getAll();
-        $this->categories = Category::getAll();
-    }
 
     public function index() {
-
-        return view('news.all', ['news' => $this->news]);
+        return view('news.all', ['news' => News::getAll()]);
     }
 
     public function getOne($id) {
-        foreach ($this->news as $item) {
-            if ($item['id'] == $id) {
-                return view('news.one', ['news' => $item]);
-            }
+
+        $news = News::getOne($id);
+        if($news) {
+            return view('news.one', ['news' => $news]);
         }
+
         return redirect('/news');
     }
 
     public function categories(){
+        $categories = Category::getAll();
         return view('categories',
-            ['categories' => $this->categories]
+            ['categories' => $categories]
         );
     }
 
     public function getCategory($id = null) {
-        foreach ($this->categories as $category) {
-            if ($category['id'] == $id) {
+        $category = Category::getOne($id);
 
-                $newsArr = [];
-                foreach($this->news as $news) {
-                    if($news['category'] == $id) {
-                        array_push($newsArr, $news);
-                    }
-                }
-
-                return view('news.all',
-                    [
-                        'category' => $category['name'],
-                        'news' => $newsArr,
-                        'page' => 'categories'
-                    ]
-                );
-            }
+        if ($category) {
+            $news = News::getByCategory($id);
+            return view('news.all', [
+                'category' => $category->name,
+                'news' => $news
+            ]);
         }
+
         return redirect('/categories');
     }
 }

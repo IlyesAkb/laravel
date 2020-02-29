@@ -23,12 +23,18 @@ class AdminController extends Controller
 
     public function saveNews(Request $request) {
         $news = $request->except('_token');
+
+        if ($request->file('image')) {
+            $path = Storage::putFile('public', $request->file('image'));
+            $url = Storage::url($path);
+            $news['image'] = $url;
+        }
         if (!News::insert($news)) {
             $request->flash();
             return redirect()->route('admin.addNews');
         }
 
-        return redirect()->route('admin.addNews');
+        return redirect()->route('news.all')->with('success', 'Новость добавлена');
 
     }
 }

@@ -7,15 +7,10 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    private $news;
-
-    public function __construct()
-    {
-        $this->news = News::getAll();
-    }
 
     public function index() {
-        return view('welcome', ['news' => $this->news]);
+        $news = (new News())->getLimit(3);
+        return view('welcome', ['news' => $news]);
     }
 
     public function info() {

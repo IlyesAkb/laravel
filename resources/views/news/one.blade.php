@@ -7,12 +7,12 @@
 @section('content')
     <section class="news-body">
         <div class="container">
-            <h1>{{ $news['heading'] }}</h1>
+            <h1>{{ $news->title }}</h1>
             <div class="news-body__img m-auto">
-                <img src="{{ $news['newsImg'] }}" alt="news__img" class="news-body__img" >
+                <img src="@if($news->image == null) {{ asset('storage/noImage.jpg') }} @else {{ $news->image }} @endif" alt="news__img" class="news-body__img" >
             </div>
             <p class="news-body__text">
-                {{ $news['description'] }}
+                {{ $news->body }}
             </p>
         </div>
     </section>
