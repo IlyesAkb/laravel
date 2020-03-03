@@ -105,8 +105,6 @@ class AdminNewsController extends Controller
         $news->fill($request->all());
 
         if ($request->has('image')) {
-            $filePath = explode('/', $news->image);
-            Storage::disk('public')->delete(array_pop($filePath));
             $path = Storage::putFile('public', $request->file('image'));
             $news->image = Storage::url($path);
         }
