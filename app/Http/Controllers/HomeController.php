@@ -9,8 +9,7 @@ class HomeController extends Controller
 {
 
     public function index() {
-        $news = (new News())->getLimit(3);
-        return view('welcome', ['news' => $news]);
+        return view('welcome', ['news' => (new News)->getLimit(3)]);
     }
 
     public function info() {

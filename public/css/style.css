@@ -113,6 +113,10 @@ h2 {
 .add-news {
   padding: 50px 0;
   box-sizing: border-box; }
+  .add-news__img-handler {
+    padding: 20px 0 20px 120px; }
+  .add-news__img {
+    width: 100%; }
 
 .registration-link {
   display: block;
@@ -123,5 +127,8 @@ h2 {
   margin-top: -100px; }
   .footer__container {
     height: 100px; }
+
+.news {
+  padding: 20px 0; }
 
 /*# sourceMappingURL=style.css.map */

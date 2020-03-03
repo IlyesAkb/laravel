@@ -10,37 +10,21 @@ class NewsController extends Controller
 {
 
     public function index() {
-        return view('news.all', ['news' => News::getAll()]);
+        return view('news.all', ['news' => News::all()]);
     }
 
-    public function getOne($id) {
-
-        $news = News::getOne($id);
-        if($news) {
-            return view('news.one', ['news' => $news]);
-        }
-
-        return redirect('/news');
+    public function getOne(News $news) {
+        return view('news.one', ['news' => $news]);
     }
 
     public function categories(){
-        $categories = Category::getAll();
-        return view('categories',
-            ['categories' => $categories]
-        );
+        return view('categories', ['categories' => Category::all()]);
     }
 
-    public function getCategory($id = null) {
-        $category = Category::getOne($id);
-
-        if ($category) {
-            $news = News::getByCategory($id);
-            return view('news.all', [
-                'category' => $category->name,
-                'news' => $news
-            ]);
-        }
-
-        return redirect('/categories');
+    public function getCategory(Category $category) {
+        return view('news.all', [
+            'category' => $category->name,
+            'news' => $category->news()
+        ]);
     }
 }

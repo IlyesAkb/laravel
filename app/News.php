@@ -3,35 +3,39 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Storage;
-use Illuminate\Http\Resources\Json;
-use DB;
+
+/**
+ * Class News
+ * @package App
+ *
+ * @property string title;
+ * @property string image;
+ * @property string body;
+ * @property boolean isPrivate;
+ * @property integer category_id;
+ */
 class News extends Model
 {
 
 
-    public static function getAll() {
-        return DB::table('news')->get();
+    protected $fillable = [
+        'title',
+        'image',
+        'body',
+        'isPrivate',
+        'category_id'
+    ];
+
+    public function category() {
+        return $this->belongsTo(Category::class, 'category_id')->first();
     }
 
-    public static function getLimit($limit) {
-        return DB::table('news')
-            ->orderBy('created_at', 'DESC')
+    public function getLimit($limit) {
+        return $this::query()
+            ->select(['id', 'title', 'image', 'created_at'])
             ->limit($limit)
+            ->orderBy('created_at', 'DESC')
             ->get();
     }
 
-    public static function getOne($id) {
-        return DB::table('news')->find($id) ;
-    }
-
-    public static function getByCategory($category) {
-        return DB::table('news')->get()->where('category_id', $category);
-    }
-
-    public static function insert($data) {
-
-        DB::table('news')->insert($data);
-        return true;
-    }
 }
