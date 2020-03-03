@@ -8,11 +8,17 @@
     <section class="news">
         <div class="container">
             @forelse($news as $item)
-                <div class="card">
+                <div class="card" id="news-{{ $item->id }}">
                     <div class="card-body">
                         <h4>{{ $item->title }}</h4>
-                        <a href="{{ route('admin.addNews', $item->id) }}"><button type="button" class="btn btn-warning">Изменить</button></a>
-                        <a href="{{ route('admin.deleteNews', $item->id) }}"><button type="button" class="btn btn-danger">Удалить</button></a>
+                        <form action="{{ route('admin.news.destroy', $item) }}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <a href="{{ route('admin.news.edit', $item) }}">
+                                <button type="button" class="btn btn-warning delete-btn">Изменить</button>
+                            </a>
+                            <input type="submit" class="btn btn-danger" value="Удалить">
+                        </form>
                     </div>
                 </div>
             @empty
@@ -21,3 +27,5 @@
         </div>
     </section>
 @endsection
+
+
