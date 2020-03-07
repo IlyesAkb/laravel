@@ -28,8 +28,8 @@ class News extends Model
         return $this->belongsTo(Category::class, 'category_id')->first();
     }
 
-    public function getLimit($limit) {
-        return $this::query()
+    public static function getLimit($limit) {
+        return News::query()
             ->select(['id', 'title', 'image', 'created_at'])
             ->limit($limit)
             ->orderBy('created_at', 'DESC')

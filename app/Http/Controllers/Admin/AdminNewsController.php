@@ -65,7 +65,7 @@ class AdminNewsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -81,14 +81,11 @@ class AdminNewsController extends Controller
      */
     public function edit(News $news)
     {
-        return response(
-            view('admin.addNews',
-                [
-                    'categories' => Category::all(),
-                    'news' => $news
-                ]
-            )
-        );
+
+        return response(view('admin.addNews', [
+            'categories' => Category::all(),
+            'news' => $news
+        ]));
     }
 
     /**

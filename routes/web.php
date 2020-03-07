@@ -13,6 +13,11 @@
 
 Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home']);
 Route::get('/info', ['uses' => 'HomeController@info', 'as' => 'info']);
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
 
 
 Route::group(
@@ -22,8 +27,9 @@ Route::group(
         'as' => 'user.'
     ],
     function () {
-        Route::get('/login', ['uses' => 'UserController@index', 'as' => 'login']);
-        Route::get('/registration', ['uses' => 'UserController@registration', 'as' => 'registration']);
+//        Route::get('/login', ['uses' => 'UserController@index', 'as' => 'login']);
+//        Route::get('/registration', ['uses' => 'UserController@registration', 'as' => 'registration']);
+//        Route::get('/verify', ['uses' => 'UserController@verify', 'as' => 'verify']);
     });
 
 Route::group(
@@ -54,22 +60,13 @@ Route::group(
     [
         'prefix' => 'admin',
         'namespase' => 'Admin',
-        'as' => 'admin.'
+        'as' => 'admin.',
+        'middleware' => ['auth', 'is_admin']
     ],
     function () {
         Route::get('/', ['uses' => 'Admin\AdminController@index', 'as' => 'index']);
-        Route::resource('news', 'Admin\AdminNewsController')
-            ->except('show');
+        Route::resource('news', 'Admin\AdminNewsController')->except('show');
+        Route::resource('users', 'Admin\AdminUsersController')->except(['create', 'store']);
     }
 );
-
-
-
-
-
-
-
-
-
-
 
