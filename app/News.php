@@ -16,8 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class News extends Model
 {
-
-
     protected $fillable = [
         'title',
         'image',
@@ -38,4 +36,23 @@ class News extends Model
             ->get();
     }
 
+    public static function rules() {
+        $categories = (new Category)->getTable();
+        return [
+            "title" => "required|min:10|max:100",
+            "category_id" => "required|exists:{$categories},id",
+            "body" => "required",
+            "image" => "mimes:jpeg,bmp,png|max:4000"
+        ];
+    }
+
+    public static function attributeNames() {
+        return [
+            'title' => 'Заголовок',
+            'category_id' => 'Категория',
+            'body' => 'Текст',
+            'image' => 'Изображение'
+        ];
+    }
 }
+

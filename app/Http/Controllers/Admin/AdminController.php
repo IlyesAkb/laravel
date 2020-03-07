@@ -12,7 +12,7 @@ use Storage;
 class AdminController extends Controller
 {
     public function index() {
-        return view('admin.index', ['page' => 'main']);
+        return view('admin.index');
     }
 
     public function addNews(News $news) {
@@ -20,21 +20,5 @@ class AdminController extends Controller
         return view('admin.addNews',
             ['categories' => Category::all(), 'news' => $news]
         );
-    }
-
-    public function saveNews(Request $request) {
-        $news = $request->except('_token');
-
-        if ($request->file('image')) {
-            $path = Storage::putFile('public', $request->file('image'));
-            $news['image'] = Storage::url($path);
-        }
-        if (!News::insert($news)) {
-            $request->flash();
-            return redirect()->route('admin.addNews');
-        }
-
-        return redirect()->route('news.all')->with('success', 'Новость добавлена');
-
     }
 }

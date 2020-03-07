@@ -31,19 +31,23 @@ class AdminNewsController extends Controller
     public function create()
     {
         return response(
-            view('admin.addNews', ['categories' => Category::all(), 'news' => new News])
+            view('admin.addNews',
+                ['categories' => Category::all(), 'news' => new News]
+            )
         );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
         $news = new News();
+        $this->validate($request, News::rules(), [], News::attributeNames());
         $news->fill($request->except('_token'));
 
         if ($request->has('image')) {
@@ -53,7 +57,9 @@ class AdminNewsController extends Controller
 
         $news->save();
 
-        return response()->redirectTo(route('admin.news.index'))->with('success', 'Новость успешно добавлена');
+        return response()
+            ->redirectTo(route('admin.news.index'))
+            ->with('success', 'Новость успешно добавлена');
     }
 
     /**
@@ -76,41 +82,65 @@ class AdminNewsController extends Controller
     public function edit(News $news)
     {
         return response(
-            view('admin.addNews', ['categories' => Category::all(), 'news' => $news])
+            view('admin.addNews',
+                [
+                    'categories' => Category::all(),
+                    'news' => $news
+                ]
+            )
         );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  News $news
+     * @param \Illuminate\Http\Request $request
+     * @param News $news
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, $news)
+    public function update(Request $request, News $news)
     {
+        $this->validate($request, News::rules(), [], News::attributeNames());
         $news->fill($request->all());
 
         if ($request->has('image')) {
             $path = Storage::putFile('public', $request->file('image'));
             $news->image = Storage::url($path);
-        } else {
+        }
+
+        if ($request->has('deleteImage')) {
+            $filePath = explode('/', $news->image);
+            Storage::disk('public')->delete(array_pop($filePath));
             $news->image = null;
         }
 
         $news->save();
 
-        return response()->redirectTo(route('admin.news.index'))->with('success', 'Новость успешно добавлена');
+        return response()
+            ->redirectTo(route('admin.news.index'))
+            ->with('success', 'Новость успешно обновлена');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param News $news
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(News $news)
     {
-        //
+        if (!is_null($news->image)) {
+            $filePath = explode('/', $news->image);
+            Storage::disk('public')->delete(array_pop($filePath));
+            $news->image = null;
+        }
+
+        $news->delete();
+
+        return redirect()
+            ->back()
+            ->with('success', 'Новость успешно удалена');
     }
 }
