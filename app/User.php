@@ -25,7 +25,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_admin'
+        'name',
+        'email',
+        'password',
+        'is_admin',
+        'id_in_soc',
+        'type_auth',
+        'avatar'
     ];
 
     /**
@@ -45,4 +51,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function validationRules() {
+        return [
+            "name" => "required|min:4|max:50",
+            "email" => "required|email|unique:users,email," . Auth::id(),
+            "password" => "required",
+            "new_password" => "nullable|string|min:3"
+        ];
+    }
+
+    public function attributeNames() {
+        return [
+            'password' => 'Текущий пароль',
+            'new_password' => 'Новый пароль'
+        ];
+    }
 }

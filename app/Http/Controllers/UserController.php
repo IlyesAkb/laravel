@@ -6,15 +6,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index() {
-        return view('auth.login');
-    }
+    public function profile() {
 
-    public function registration() {
-        return view('auth.register');
-    }
-
-    public function verify() {
-        return view('auth.verify');
     }
 }

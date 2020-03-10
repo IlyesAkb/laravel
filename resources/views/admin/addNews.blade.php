@@ -42,7 +42,7 @@
                                             id="news_title"
                                             class="form-control"
                                             name="title"
-                                            value="{{ $news->title ?? old('title') }}">
+                                            value="{{ old('title') ?? $news->title ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -87,7 +87,7 @@
                                             </div>
                                         @endif
                                         <textarea class="form-control rounded-0" name="body" id="news_body"
-                                                  cols="30" rows="10">{{ $news->body ?? old('body') }}</textarea>
+                                                  cols="30" rows="10">{{ old('body') ?? $news->body ?? '' }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
