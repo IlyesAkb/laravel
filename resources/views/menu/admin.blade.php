@@ -7,7 +7,22 @@
             <a class="nav-link" href="{{ route('admin.news.index') }}">Все новости</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.users.index') }}">Пользователи</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('home') }}">Выйти</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="#" class="nav-link">{{ Auth::user()->name }}</a>
+        </li>
+        <li class="nav-item">
+            <form action="{{ route('logout') }}" method="post">
+                @method('post')
+                @csrf
+                <input class="nav-link logout-btn" type="submit" value="Выйти">
+            </form>
         </li>
     </ul>
 </div>
