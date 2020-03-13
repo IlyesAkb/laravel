@@ -13,6 +13,17 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
+    'vkontakte' => [
+        'client_id' => env('VKONTAKTE_KEY'),
+        'client_secret' => env('VKONTAKTE_SECRET'),
+        'redirect' => env('VKONTAKTE_REDIRECT_URI')
+    ],
+
+    'github' => [
+        'client_id' => env('GITHUB_KEY'),
+        'client_secret' => env('GITHUB_SECRET'),
+        'redirect' => env('GITHUB_REDIRECT')
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),

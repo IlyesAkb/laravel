@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\User;
+use Auth;
+use Illuminate\Support\Facades\Hash;
 
-class AdminUsersController extends Controller
+class ProfileController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -16,11 +16,7 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        return response(
-            view('admin.users', [
-                'users' => User::all()
-            ])
-        );
+        //
     }
 
     /**
@@ -54,7 +50,7 @@ class AdminUsersController extends Controller
     {
         $user = User::query()->find($id);
         return response(
-            view('admin.editUser', [
+            view('user.profile', [
                 'user' => $user
             ])
         );
@@ -63,22 +59,12 @@ class AdminUsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $user = User::query()->find($id);
-        $user->is_admin = !$user->is_admin;
-        $user->save();
-
-        return redirect()
-            ->route('admin.users.index')
-            ->with('success',
-                $user->is_admin
-                    ? 'Пользователь добавлени в администраторы'
-                    : 'Пользователь удален из администраторов'
-            );
+        //
     }
 
     /**
@@ -90,31 +76,38 @@ class AdminUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::query()->find($id);
+        if(!Hash::check($request->get('password'), Auth::user()->password)) {
+            return redirect()
+                ->back()
+                ->withErrors(['password' => ['Неверный пароль']]);
+        }
 
+        /**
+         * @var User $user
+         */
+        $user = Auth::user();
         $user->fill([
             'name' => $request->get('name'),
-            'email' => $request->get('email')
+            'email' => $request->get('email'),
         ]);
 
-        $user->save();
+        if(!is_null($request->get('new_password')))
+            $user->password = $request->get('new_password');
 
+        $user->save();
         return redirect()
-            ->route('admin.users.index')
-            ->with('success', 'Данные пользователя изменены');
+            ->back()
+            ->with('success', 'Данные успешно изменены');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        return redirect()
-            ->back()
-            ->with('success', 'Пользователь удален');
+        //
     }
 }

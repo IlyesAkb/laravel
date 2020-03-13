@@ -36,22 +36,23 @@ class News extends Model
             ->get();
     }
 
-    public static function rules() {
+    public function validationRules() {
         $categories = (new Category)->getTable();
         return [
             "title" => "required|min:10|max:100",
             "category_id" => "required|exists:{$categories},id",
             "body" => "required",
-            "image" => "mimes:jpeg,bmp,png|max:4000"
+            "image" => "mimes:jpeg,bmp,png|max:4000",
+            "is_private" => "boolean|min:0|max:1"
         ];
     }
 
-    public static function attributeNames() {
+    public function attributeNames() {
         return [
             'title' => 'Заголовок',
             'category_id' => 'Категория',
             'body' => 'Текст',
-            'image' => 'Изображение'
+            'image' => 'Изображение',
         ];
     }
 }

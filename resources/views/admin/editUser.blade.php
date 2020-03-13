@@ -66,69 +66,6 @@
                                             >
                                     </div>
                                 </div>
-{{--                                <div class="form-group row">--}}
-{{--                                    <label for="userPassword" class="col-md-4 col-form-label text-md-right">--}}
-{{--                                        Пароль--}}
-{{--                                    </label>--}}
-{{--                                    <div class="col-md-6">--}}
-{{--                                        @if($errors->has('password'))--}}
-{{--                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">--}}
-{{--                                                @foreach($errors->get('password') as $error)--}}
-{{--                                                    {{ $error }}--}}
-{{--                                                @endforeach--}}
-{{--                                                <button type="button" class="close" data-dismiss="alert"--}}
-{{--                                                        aria-label="Close">--}}
-{{--                                                    <span aria-hidden="true">&times;</span>--}}
-{{--                                                </button>--}}
-{{--                                            </div>--}}
-{{--                                        @endif--}}
-{{--                                        <input--}}
-{{--                                            type="text"--}}
-{{--                                            id="userPassword"--}}
-{{--                                            class="form-control"--}}
-{{--                                            name="password"--}}
-{{--                                        >--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="form-group row">--}}
-{{--                                    <label for="userNewPassword" class="col-md-4 col-form-label text-md-right">--}}
-{{--                                        Новый пароль--}}
-{{--                                    </label>--}}
-{{--                                    <div class="col-md-6">--}}
-{{--                                        @if($errors->has('email'))--}}
-{{--                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">--}}
-{{--                                                @foreach($errors->get('email') as $error)--}}
-{{--                                                    {{ $error }}--}}
-{{--                                                @endforeach--}}
-{{--                                                <button type="button" class="close" data-dismiss="alert"--}}
-{{--                                                        aria-label="Close">--}}
-{{--                                                    <span aria-hidden="true">&times;</span>--}}
-{{--                                                </button>--}}
-{{--                                            </div>--}}
-{{--                                        @endif--}}
-{{--                                        <input--}}
-{{--                                            type="text"--}}
-{{--                                            id="userNewPassword"--}}
-{{--                                            class="form-control"--}}
-{{--                                            name="email"--}}
-{{--                                        >--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-                                <div class="form-group row">
-                                    <label for="is_admin" class="col-md-4 col-form-label text-md-right">
-                                        Администратор
-                                    </label>
-                                    <div class="col-md-6">
-                                        <div id="token" data-token="{{ csrf_token() }}"></div>
-                                        <input type="checkbox"
-                                               name="is_admin"
-                                               id="is_admin"
-                                               value="1"
-                                               class="form-check mt-3"
-                                               @if($user->is_admin) checked @endif
-                                        >
-                                    </div>
-                                </div>
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         Изменить

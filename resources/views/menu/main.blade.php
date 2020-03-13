@@ -12,6 +12,12 @@
         <li class="nav-item {{ request()->routeIs('info') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('info') }}">О проекте</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('vkLogin') }}">VK Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('githubLogin') }}">Github Login</a>
+        </li>
         @if(Auth::check() && Auth::user()->is_admin)
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.index') }}">Админка</a>
@@ -24,8 +30,16 @@
     </form>
     @if(Auth::check())
         <ul class="navbar-nav">
+            @if(Auth::user()->avatar)
+                <li class="nav-item">
+                    <img src="{{ Auth::user()->avatar }}" alt="avatar" class="user-avatar">
+                </li>
+            @endif
             <li class="nav-item">
-                <a href="#" class="nav-link">{{ Auth::user()->name }}</a>
+                <a href="{{ Auth::user()->is_admin ? route('admin.index') : route('user.profile.show', Auth::user()->id) }}"
+                   class="nav-link"
+                >{{ Auth::user()->name }}
+                </a>
             </li>
             <li class="nav-item">
                 <form action="{{ route('logout') }}" method="post">

@@ -47,7 +47,6 @@ class AdminNewsController extends Controller
     public function store(Request $request)
     {
         $news = new News();
-        $this->validate($request, News::rules(), [], News::attributeNames());
         $news->fill($request->except('_token'));
 
         if ($request->has('image')) {
@@ -98,7 +97,6 @@ class AdminNewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        $this->validate($request, News::rules(), [], News::attributeNames());
         $news->fill($request->all());
 
         if ($request->has('image')) {

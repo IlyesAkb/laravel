@@ -14,7 +14,9 @@ class UsersSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@mail.ru',
             'password' => Hash::make('123'),
-            'is_admin' => true
+            'is_admin' => true,
+            'created_at' => now(),
+            'updated_at' => now()
         ];
 
         $data[] = $admin;
@@ -24,7 +26,9 @@ class UsersSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->email,
                 'password' => Hash::make($faker->password()),
-                'is_admin' => false
+                'is_admin' => false,
+                'created_at' => now(),
+                'updated_at' => now()
             ];
         }
 
