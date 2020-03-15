@@ -144,4 +144,15 @@ h2 {
   width: 40px;
   margin-left: 20px; }
 
+.resource-form {
+  height: 200px !important;
+  transition: height 0.3s;
+  overflow: hidden !important; }
+
+.inactive {
+  height: 0 !important; }
+
+.btn-wrapper {
+  margin: 15px 0; }
+
 /*# sourceMappingURL=style.css.map */
