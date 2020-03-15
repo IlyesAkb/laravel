@@ -6,11 +6,11 @@
         <li class="nav-item {{request()->routeIs('admin.news.index') ? 'active' : ''}}">
             <a class="nav-link" href="{{ route('admin.news.index') }}">Все новости</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{request()->routeIs('admin.users.index') ? 'active' : ''}}">
             <a class="nav-link" href="{{ route('admin.users.index') }}">Пользователи</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('home') }}">Выйти</a>
+        <li class="nav-item {{request()->routeIs('admin.resources.index') ? 'active' : ''}}">
+            <a class="nav-link" href="{{ route('admin.resources.index') }}">Новостные ресурсы</a>
         </li>
     </ul>
     <ul class="navbar-nav">

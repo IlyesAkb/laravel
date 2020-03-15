@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="news_body" class="col-md-4 col-form-label text-md-right">Текст</label>
+                                    <label for="newsBody" class="col-md-4 col-form-label text-md-right">Текст</label>
                                     <div class="col-md-6">
                                         @if($errors->has('body'))
                                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -86,8 +86,13 @@
                                                 </button>
                                             </div>
                                         @endif
-                                        <textarea class="form-control rounded-0" name="body" id="news_body"
-                                                  cols="30" rows="10">{{ old('body') ?? $news->body ?? '' }}</textarea>
+                                        <textarea class="form-control rounded-0"
+                                                  name="body"
+                                                  id="newsBody"
+                                                  cols="30" rows="10"
+                                        >
+                                            {{ old('body') ?? $news->body ?? '' }}
+                                        </textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -159,4 +164,16 @@
             </div>
         </div>
     </section>
+    <script src="{{ asset('js/ckeditor4/ckeditor.js') }}"></script>
+    <script>
+        const options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+
+        CKEDITOR.replace('newsBody', options);
+    </script>
 @endsection
+

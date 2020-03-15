@@ -165,6 +165,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
         \App\Providers\EventServiceProvider::class,
+        \Orchestra\Parser\XmlServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -196,6 +197,7 @@ return [
     'aliases' => [
 
         'App' => Illuminate\Support\Facades\App::class,
+        'XmlParser' => \Orchestra\Parser\Xml\Facade::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,

@@ -17,6 +17,8 @@ Route::get('/', ['uses' => 'HomeController@index', 'as' => 'home']);
 Route::get('/info', ['uses' => 'HomeController@info', 'as' => 'info']);
 
 
+
+
 Route::get('/vk/auth', [
     'uses' => 'LoginController@loginVK',
     'as' => 'vkLogin'
@@ -88,5 +90,8 @@ Route::group(
         Route::resource('news', 'Admin\AdminNewsController')
             ->only(['update', 'store'])
             ->middleware('validation:App\News');
+        Route::get('/parser', ['uses' => 'Admin\AdminParserController@index', 'as' => 'parser']);
+        Route::resource('/resources', 'Admin\AdminResourceController')
+            ->except(['show', 'update']);
     }
 );

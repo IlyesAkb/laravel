@@ -19,7 +19,9 @@ class AdminNewsController extends Controller
     public function index()
     {
         return response(
-            view('admin.newsAll', ['news' => News::all()])
+            view('admin.newsAll',
+                ['news' => News::query()->paginate(15)
+                ])
         );
     }
 

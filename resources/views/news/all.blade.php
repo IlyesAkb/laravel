@@ -39,5 +39,8 @@
                 @endforelse
             </div>
         </div>
+        <div class="row justify-content-center btn-wrapper">
+            {{ $news->links() }}
+        </div>
     </section>
 @endsection

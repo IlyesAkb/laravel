@@ -25,6 +25,9 @@
                 <h1>Нет новостей</h1>
             @endforelse
         </div>
+        <div class="row justify-content-center btn-wrapper">
+            {{ $news->links() }}
+        </div>
     </section>
 @endsection
 
